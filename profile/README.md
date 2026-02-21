@@ -7,6 +7,10 @@
 ![Contributing Guidelines](https://img.shields.io/badge/🤝-Contributing_Guidelines-blue?style=plastic)
 [![License](https://img.shields.io/badge/⚖_License-GPL_v3.0-blue.svg?style=plastic)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![](https://img.shields.io/badge/💭-Community_Discussion-orange?style=plastic)](https://github.com/orgs/aivenio/discussions)
+[![sponsors](https://img.shields.io/github/sponsors/aivenio?label=💰%20Active%20Sponsors&style=plastic)](https://github.com/sponsors/aivenio)
+
+[![GitHub Release](https://img.shields.io/github/v/release/aivenio/macrodb?label=MacroDB&style=plastic)](https://github.com/aivenio/macrodb/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/aivenio/stocksdb?label=StocksDB&style=plastic)](https://github.com/aivenio/stocksdb/releases)
 
 </div>
 
@@ -22,7 +26,8 @@ of (but not limited to) science and technology, finance, and macroeconomic facto
 The repository provides PostgreSQL as the de facto backend database, divided into *microservices* that can work independently or
 in coordination with other projects. The different microservices can either be configured in separate servers (clouds, systems)
 or can be configured in the same host under a different named schema. Check our [website](https://aivenio.github.io/) or our
-community discussion [page](https://github.com/orgs/aivenio/discussions) for more details.
+community discussion [page](https://github.com/orgs/aivenio/discussions) for more details. Check the individual project's updated
+release from the badges.
 
 ## ⚖ Project Licensing
 
