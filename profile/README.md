@@ -11,52 +11,17 @@
 
 <div align = "justify">
 
-👋 [**`AivenIO`**](https://github.com/aivenio) is a scalable database platform built for modern data services—fully managed,
-cloud-native, and highly adaptable to your specific requirements.
-
-<div align = "center">
-
-```mermaid
-timeline
-  title Journey of AivenIO
-    October, 2016  : Incorporation Date
-    May, 2021      : MacroDB Released (private)
-    Feburary, 2026 : MacroDB Project is Open-Sourced
-                   : StockDB Project is Open-Sourced
-```
-
-</div>
+👋 [**`AivenIO`**](https://github.com/aivenio) is a scalable database platform built for modern data services - fully managed,
+cloud-native, and highly adaptable to your specific requirements. The usage is infinite - from a collection of awesome data for
+projects or integration with applications that provide data-driven (backed) decision-making for a holistic picture in the fields
+of (but not limited to) science and technology, finance, and macroeconomic factors.
 
 ## ✨ Getting Started
 
 The repository provides PostgreSQL as the de facto backend database, divided into *microservices* that can work independently or
 in coordination with other projects. The different microservices can either be configured in separate servers (clouds, systems)
-or can be configured in the same host under a different named schema.
-
-### 📜 Broad Level Schema
-
-A board-level schema design and interconnection between different projects can be discussed using the overall schema design as
-below. The schema lists the primary keys that are either part of the same database or are logically available from the producer
-database.
-
-```mermaid
-erDiagram
-    GEOGRAPHY {
-        CHAR(3) country_code
-        CHAR(5) state_uuid
-        CHAR(5) city_uuid
-    }
-    CURRENCY {
-        CHAR(3) currency_code
-    }
-    EXCHANGE {
-        CHAR(4) market_identifier_code
-        CHAR(3) country_code
-    }
-
-    GEOGRAPHY }|--|{ EXCHANGE : has
-    GEOGRAPHY }|--|{ CURRENCY : has
-```
+or can be configured in the same host under a different named schema. Check our [website](https://aivenio.github.io/) or our
+community discussion [page](https://github.com/orgs/aivenio/discussions) for more details.
 
 ## ⚖ Project Licensing
 
