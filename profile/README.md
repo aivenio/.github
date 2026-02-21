@@ -3,9 +3,10 @@
 # AivenIO Database Manager
 
 [![Org. Home](https://img.shields.io/badge/aivenio-%F0%9F%91%93_DBA-black?logo=github&style=plastic)](https://github.com/aivenio)
-![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg?style=plastic)
+![Contributor Covenant](https://img.shields.io/badge/👩‍💻_Contributor%20Covenant-2.1-4baaaa.svg?style=plastic)
 ![Contributing Guidelines](https://img.shields.io/badge/🤝-Contributing_Guidelines-blue?style=plastic)
-[![License](https://img.shields.io/badge/License-GPL_v3.0-blue.svg?style=plastic)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+[![License](https://img.shields.io/badge/⚖_License-GPL_v3.0-blue.svg?style=plastic)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+[![](https://img.shields.io/badge/💭-Community_Discussion-orange?style=plastic)](https://github.com/orgs/aivenio/discussions)
 
 </div>
 
