@@ -8,6 +8,7 @@
 [![License](https://img.shields.io/badge/⚖_License-GPL_v3.0-blue.svg?style=plastic)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![](https://img.shields.io/badge/💭-Community_Discussion-orange?style=plastic)](https://github.com/orgs/aivenio/discussions)
 [![sponsors](https://img.shields.io/github/sponsors/aivenio?label=💰%20Active%20Sponsors&style=plastic)](https://github.com/sponsors/aivenio)
+[![Members](https://img.shields.io/badge/AivenIO-Members_View-blue?logo=github&style=plastic)](https://github.com/orgs/aivenio/people)
 
 [![GitHub Release](https://img.shields.io/github/v/release/aivenio/macrodb?label=MacroDB&style=plastic)](https://github.com/aivenio/macrodb/releases)
 [![GitHub Release](https://img.shields.io/github/v/release/aivenio/stocksdb?label=StocksDB&style=plastic)](https://github.com/aivenio/stocksdb/releases)
