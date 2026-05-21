@@ -30,6 +30,33 @@ or can be configured in the same host under a different named schema. Check our 
 community discussion [page](https://github.com/orgs/aivenio/discussions) for more details. Check the individual project's updated
 release from the badges.
 
+### PUBLISHER → SUBSCRIPTION Database Tables
+
+We're using logical replication (WAL) to sync data between different database tables which is the practical way to manage foreign
+key constraints across the servers. As an end user, if you are using **two** different server, then normal process should be
+enough as below:
+
+```pgsql
+CREATE PUBICATION ...; -- on the publication server
+CREATE SUBSCRIPTION ...; -- on the subscription server
+```
+
+However, if you are **using the same server with two different database** (typically useful for data management, etc.) then
+you may need to create slot replication (in the subscriber server) method as per detailed debugging steps below:
+
+```pgsql
+CREATE SUBSCRIPTION ...
+  WITH (
+    create_slot = false, enabled = false,
+    slot_name = ...
+  );
+
+ALTER SUBSCRIPTION <slot-name> ENABLE;
+```
+
+A practical deep down documentation is available [here](../docs/logicalReplication.md). This document was created from the
+original server logs and steps to fix the issue. 
+
 ## ⚖ Project Licensing
 
 Our projects strictly follow [`GNU GPL v3`](https://www.gnu.org/licenses/gpl-3.0.en.html), a strong copy-left license. Please
