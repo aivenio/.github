@@ -32,8 +32,8 @@ release from the badges.
 
 ### PUBLISHER → SUBSCRIPTION Database Tables
 
-We're using logical replication (WAL) to sync data between different database tables which is the practical way to manage foreign
-key constraints across the servers. As an end user, if you are using **two** different server, then normal process should be
+We're using logical replication (WAL) to sync data between different database tables, which is the practical way to manage foreign
+key constraints across the servers. As an end user, if you are using **two** different servers, then the normal process should be
 enough as below:
 
 ```pgsql
@@ -41,8 +41,8 @@ CREATE PUBICATION ...; -- on the publication server
 CREATE SUBSCRIPTION ...; -- on the subscription server
 ```
 
-However, if you are **using the same server with two different database** (typically useful for data management, etc.) then
-you may need to create slot replication (in the subscriber server) method as per detailed debugging steps below:
+However, if you are **using the same server with two different databases** (typically useful for data management, etc.), then
+you may need to create a slot replication (in the subscriber server) method as per the detailed debugging steps below:
 
 ```pgsql
 CREATE SUBSCRIPTION ...
@@ -54,22 +54,99 @@ CREATE SUBSCRIPTION ...
 ALTER SUBSCRIPTION <slot-name> ENABLE;
 ```
 
-A practical deep down documentation is available [here](../docs/logicalReplication.md). This document was created from the
-original server logs and steps to fix the issue. 
+A *practical deep-down documentation* is available [here](../docs/logicalReplication.md). This document was created from the
+original server logs and steps to fix the issue.
+
+### High-Level ER Diagram
+
+The flowchart provides a high-level overview of the *information* available under different microservices and their
+relationship with each other. For a detailed ER diagram, refer to the [`schema.dbml`](https://dbml.dbdiagram.io/home) file
+in the respective repository.
+
+```mermaid
+flowchart TD
+
+  subgraph MacroDB
+
+    subgraph COUNTRY[Country Information]
+      direction LR
+
+      continent_mw --> country_mw
+      region_mw --> country_mw
+      subregion_mw --> country_mw
+      country_mw --> state_mw
+      state_mw --> city_mw
+
+      region_mw --> subregion_mw
+    end
+
+    subgraph CURRENCY[Currency Information]
+      direction LR
+
+      currency_type_mw --> currency_mw
+      currency_type_mw --> currency_mw
+
+      currency_type_mw --> currency_subtype_mw
+
+      forex_rate_tx
+    end
+
+
+  style COUNTRY fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px
+  style CURRENCY fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px
+  end
+
+  subgraph StocksDB
+
+    subgraph EXCHANGES[Stock Exchanges]
+      direction LR
+
+      stock_exchange_mw
+    end
+
+    subgraph SECURITIES[Security Information]
+      direction LR
+
+      securities_mw
+      securities_exchange_symbol_mw
+    end
+
+  stock_exchange_mw --> securities_mw
+  securities_mw --> securities_exchange_symbol_mw
+
+  style EXCHANGES fill:#D3CFF0,stroke:#7B1FA2,stroke-width:2px
+  style SECURITIES fill:#D3CFF0,stroke:#7B1FA2,stroke-width:2px
+  end
+
+  country_mw --IN--> stock_exchange_mw
+  currency_mw --USING--> stock_exchange_mw
+
+  style MacroDB fill:#D6A0DE,stroke:#7B1FA2,stroke-width:2px
+  style StocksDB fill:#ADA0DE,stroke:#7B1FA2,stroke-width:2px
+```
+
+The diagram is designed to highlight the relationships between the two independent micro-services using *publication* rules
+of the PostgreSQL database. A relationship is maintained in a `PUBLICATION → SUBSCRIPTION` format for understanding. A set
+of important cross-functional linkages are as follows:
+
+  1. A country has one/more listed stock exchanges (`country_mw --IN--> stock_exchange_mw`) where a security
+    is being traded. Cros-functional link is maintained via the **`macrodb_geography_table`** publication.
+  2. A security exchange primarily operates using (`currency_mw --USING--> stock_exchange_mw`) a set of currency
+    which is part of the country. Cross-functional link is maintained via the **`macrodb_currency_table`** publication.
 
 ## ⚖ Project Licensing
 
 Our projects strictly follow [`GNU GPL v3`](https://www.gnu.org/licenses/gpl-3.0.en.html), a strong copy-left license. Please
-refer to the individual `LICENSE` file for more information.
+refer to the individual `LICENSE` file in each repository for complete information and important terms and conditions.
 
-## ⚖ Project Disclaimer
+## ⚠ Project Disclaimer
 
 The service is intended solely to provide a data structure that enables efficient management of databases containing various
 data points that can be used effectively for analysis. Certain *non-sensitive data* that is *available in the public domain*
 may be distributed with the project. Other data may not be shared, and the source of the same may not be disclosed; the
 organization is under no obligation to make such data available to the general public.
 
-In a certain project, there might be information available of tradeble securities. Any information or discussions are for
+In a certain project, there might be information available on tradable securities. Any information or discussions are for
 general information and educational purposes only. It does not constitute financial, investment, legal, tax, or accounting
 advice, and should not be relied upon as such.
 
