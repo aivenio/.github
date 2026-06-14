@@ -10,8 +10,9 @@
 [![sponsors](https://img.shields.io/github/sponsors/aivenio?label=💰%20Active%20Sponsors&style=plastic)](https://github.com/sponsors/aivenio)
 [![Members](https://img.shields.io/badge/AivenIO-Members_View-blue?logo=github&style=plastic)](https://github.com/orgs/aivenio/people)
 
-[![GitHub Release](https://img.shields.io/github/v/release/aivenio/macrodb?label=MacroDB&style=plastic)](https://github.com/aivenio/macrodb/releases)
-[![GitHub Release](https://img.shields.io/github/v/release/aivenio/stocksdb?label=StocksDB&style=plastic)](https://github.com/aivenio/stocksdb/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/aivenio/macrodb?label=🌎%20MacroDB&style=plastic)](https://github.com/aivenio/macrodb/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/aivenio/stocksdb?label=📈%20StocksDB&style=plastic)](https://github.com/aivenio/stocksdb/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/aivenio/tradesdb?label=🤖%20TradesDB&style=plastic)](https://github.com/aivenio/tradesdb/releases)
 
 </div>
 
