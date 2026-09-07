@@ -43,7 +43,7 @@ CREATE SUBSCRIPTION ...; -- on the subscription server
 ```
 
 However, if you are **using the same server with two different databases** (typically useful for data management, etc.), then
-you may need to create a slot replication (in the subscriber server) method as per the detailed debugging steps below:
+you may need to create a slot replication (on the subscriber server) method as per the detailed debugging steps below:
 
 ```pgsql
 CREATE SUBSCRIPTION ...
@@ -57,6 +57,38 @@ ALTER SUBSCRIPTION <slot-name> ENABLE;
 
 A *practical deep-down documentation* is available [here](../docs/logicalReplication.md). This document was created from the
 original server logs and steps to fix the issue.
+
+#### Database User(s)
+
+Creating a dedicated user is the right *production instinct*, but one role isn't enough → one will need two/more different
+roles on two/more different servers with the following configuration.
+
+##### Settings on Publication Server
+
+```pgsql
+CREATE ROLE <username> WITH LOGIN REPLICATION
+  NOSUPERUSER NOCREATEDB NOCREATEROLE NOBYPASSRLS INHERIT
+  CONNECTION LIMIT 5
+  PASSWORD 'my-secret-password';
+
+GRANT CONNECT ON DATABASE <database> TO <username>;
+GRANT USAGE ON SCHEMA <schema> TO <username>;
+GRANT SELECT ON ALL TABLES IN SCHEMA <schema> TO <username>;
+ALTER DEFAULT PRIVILEGES IN SCHEMA <schema> GRANT SELECT ON TABLES TO <username>;
+```
+
+##### Settings on Subscriber Server
+
+```pgsql
+CREATE ROLE <username> WITH LOGIN
+  NOSUPERUSER NOCREATEDB NOCREATEROLE INHERIT
+  CONNECTION LIMIT 5
+  PASSWORD 'my-secret-password';
+
+GRANT pg_create_subscription TO <username>;
+GRANT CREATE ON DATABASE <database> TO <username>;
+GRANT <schema> TO <username>;
+```
 
 ### High-Level ER Diagram
 
